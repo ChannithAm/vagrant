@@ -1,7 +1,25 @@
 អត្ថបទស្ដីអំពីVagrant​ - Vagrant​+Chef
-===============================
+===================================
 
-## Vagrant​ provisioning
+មាតិការ
+=========
+
+* [១. Vagrant​ provisioning](#provisioning)
+* [២. Install PHP](#installPHP)
+* [៣. Chef](#chef)
+  * [៣.១. ហេតុអ្វីយើងប្រើChef?](#why)
+  * [៣.២. កំនត់និយមន័យនៅក្នុងchef](#why)
+* [៤. Vagrant + Chef](#vagrantChef)
+  * [៤.១. config Vagrantfile](#conf)
+  * [៤.២. Add cookbooks](#cookbooks)
+  * [៤.៣. Reload provision](#reload)
+* [៥. Chef provision vs shell provision](#comp)
+* [៦. Recap](#recap)
+* [៧​.References](#ref)
+
+--------------------------------------------------------------
+
+## <a name="provsioning">១. Vagrant​ provisioning</a>
 
 នៅក្នុងអត្ថបទមុន យើងបានស្វែងយល់មូលដ្ឋានខ្លះៗអំពីvagrant ដែលអាចបង្កើត1 VM បំរើការអភិវឌ្ឍwebយ៉ាងងាយជាមួយubunu 12.04 និងshell provisioning។
 
@@ -15,7 +33,8 @@ Vagrant.configure(2) do |config|
 
 setup.sh
 ```
-# Install PHP
+## <a name="installPHP">២. Install PHP</a>
+
 sudo apt-get install -y python-software-properties build-essential
 sudo add-apt-repository -y ppa:ondrej/php5
 sudo apt-get update
@@ -35,16 +54,16 @@ sudo apt-get install -y git-core subversion curl php5-cli php5-curl php5-mcrypt 
 មាន៣ឈ្មោះដែលបានលើកឡើងនៅក្នុងdocumentរបស់Vagrant នោះគឺ Ansible, Chef & Puppet។ អត្ថបទនេះនឹងបង្ហាញអំពី `Chef`។ មិនមែនមកពីChefមានអ្វីដែលសាមញ្ញ
 ជាង២ផ្សេងទៀតនោះទេ និយាយរួមទៅឈ្មោះរបស់វាក៏មានភាពទាក់ទាញផងដែរ។
 
-Chef
-=====
+## <a name="chef">៣. Chef</a>
+
 
 chef ជាsoftwareគ្រប់គ្រងconfigអោយserver។ បណ្ដារconfig របស់server អាចយល់បានថាជា "recipes" ដែលត្រូវបានសរសេរដោយRuby និង Domain-specific-language (DSL)។
 Chefមិនត្រឹមតែមានសមត្ថភាពគ្រប់គ្រង់ការបង្កើតម៉ាស៊ីនមួយនោះទេ ថែមទាំងគ្រប់systemទាំងមូលរបស់ក្រុមហ៊ុនផងដែរ។ Chefអាចរួមជាមួយplatform Cloud ដូចជា​ Rackspace,
 Internap, Amazone EC2, Google Cloud Platform, OpenStack, SoftLayer & Microsoft Azure​ ដើម្បីអាចconfigដោយស្វ័យប្រវត្តិនូវserverជាច្រើន
 ក្នុងពេលតែមួយ។ ស្វ័យប្រវត្តិ គឺជាចំនុចដែលធ្វើអោយChefមានភាពលេចធ្លោឡើង។
 
-ហេតុអ្វីយើងប្រើChef?
-================
+### <a name="why">៣.១. ហេតុអ្វីយើងប្រើChef?</a>
+
 
   * ប្រសិទ្ធិភាព: Configរបស់serverទាំងអស់នឹងរក្សានៅrepository​ តែមួយគត់។
   * លទ្ធភាពពង្រីកបន្ថែម: អ្នកគ្រាន់តែបង្កើនតួលេខserverរបស់អ្នកឡើង បែងចែកពួកគេតាម role & node។ chef​ នឹងរាប់រងផ្នែកដែលនៅសល់។
@@ -53,7 +72,7 @@ Internap, Amazone EC2, Google Cloud Platform, OpenStack, SoftLayer & Microsoft A
   * ឯកសារ: ក៏ដូចជាclean codeដែរ  គឺឯកសារច្បាស់លាស់បំផុតសំរាប់projectរបស់អ្នក។ chefជាឯកសាររបស់server systemរបស់អ្នក រួមទាំងពត័មានអំពីserverដែលបានរក្សា
   នៅក្នុង chef recipes។(ច្បាស់ណាស់អ្នកមិនអាចនិយាយថាshell scriptជាឯកសាររសប់អ្នកនោះទេ។)
   
-## កំនត់និយមន័យនៅក្នុងchef
+### <a name="def">៣.២. កំនត់និយមន័យនៅក្នុងchef</a>
 
 - Chef Client: command line tool ប្រើប្រាស់ក្នុងការconfig server
 - Chef Solo: ជំនាន់របស់Chef Client, config serverដែលមិនឋិតក្នុងserverណាផ្សេង។
@@ -65,13 +84,14 @@ Internap, Amazone EC2, Google Cloud Platform, OpenStack, SoftLayer & Microsoft A
 - Template: 1 file ផ្ទុកនូវ attributes,ប្រើដើម្បីបង្កើតfile config (នេះជា 1 file erb)។
 - Attribute: អញ្ញាតត្រូវបានបញ្ជូនតាមរយៈChef និងបានប្រើប្រាស់ក្នុងrecipes, templates។
 
-## Vagrant + Chef
+## <a name="vagrantChef">៤. Vagrant + Chef</a>
 
 មិត្តអានគួមានVMមួយ ដើម្បីអ្នកអាចធ្វើតាមការណែនាំ ដោយមិនខ្លាចខូចម៉ាស៊ីនរបស់អ្នក។
 
 ខាងក្រោមនេះជាការណែនាំជាមួយ provisioning​​ អោយvagrant ប្រើប្រាស់Chef។
 
-1. config Vagrantfile
+### <a name="conf">៤.១. config Vagrantfile</a>
+
 
 ដំបូងអ្នកedit file Vagrantfile ដែលអនុញ្ញាតធ្វើ provisioningដោយchef មិនធ្វើដោយshellដូចមុនទេ។
 ```
@@ -93,7 +113,8 @@ Options របស់Chef Solo
 - **synced_folder_type:** មធ្យោបាយដើម្បីsync folder, ធានាថាprovisioning ប្រព្រឺត្តទៅល្អ។
 ```
 
-2. Add cookbooks
+### <a name="cookbooks">៤.២. Add cookbooks</a>
+
 
 បន្តមកទៀតបង្កើតdirectoryអោយChef cookbook។ ពីroot directoryរបស់app អ្នកបង្កើតdirectoryមួយ ក្រោយមកadd recipesតាមដ្យាក្រាមខាងក្រោម។
 ```
@@ -133,14 +154,14 @@ git submodule add https://github.com/opscode-cookbooks/apache2.git cookbooks/apa
 ប្រសិនបើប្រើប្រាស់ knife អ្នកអាចdownload cookbookចេញពីdirectoryនៃprojectផ្សេង ដើម្បីយកមកប្រើប្រាស់ក្នុងករណីផ្សេទៀត។ ចំពោះជាំមួយ git submodule គឺrepositoryរបស់អ្នកមិនកើនឡើង ហើយគ្រប់គ្រង
 ទាំងមូលយ៉ាងងាយស្រួល។
 
-3. Reload provision
+### <a name="reload">៤.៣. Reload provision</a>
 
 អ្នកអាចload provisionដោយcommandខាងក្រោម
 ```
 vagrant provision
 ```
 
-## Chef provision vs shell provision
+## <a name="comp">៥. Chef provision vs shell provision</a>
 
 មកដល់ពេលនេះអ្នកបានយល់អំពីពីការប្រើប្រាស់ Chef។ ហើយអ្នកអាចឆ្លើយនឹងសំនួរខាងលើដែលបានលើកឡើងផងដែរ។
 
@@ -170,11 +191,11 @@ case node['platform_family']
 ```
 
 
-## Recap
+## <a nakme="recap">៦. Recap</a>
 
 ខាងលើនេះ ជាការនិយាយអំពី Chef ក្នុងVagrant។ សង្ឃឹមថាមានអត្ថប្រយោជន៍ដល់អ្នក អាចអោយអ្ន​កយល់បន្ថែមអំពីtool ក៏ដូចជាក្នុងការsetup system អោយserver។
 
-## References
+## <a name="ref">៧​.References</a>
 
 [1] https://adamcod.es/2013/01/15/vagrant-is-easy-chef-is-hard-part2.html
 

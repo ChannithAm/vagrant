@@ -1,7 +1,26 @@
 អត្ថបទស្ដីអំពីVagrant
 ================
 
-## . Vagrantជាអ្វី?
+មាតិការ
+===========
+
+* [១. Vagrantជាអ្វី?](#intro)
+* [២. ផលប្រយោជន៍របស់Vagrant](#pros)
+  * [២.១. ចំពោះdeveloper](#dev)
+  * [២.២. ចំពោះoperations engineer](#operation)
+  * [២.៣. ចំពោះDesigner](#design)
+* [៣. ការដំឡើង](#install)
+* [៤. Project Setup](#setup)
+* [៥. Boxes](#boxes)
+* [៦. Up & SSH](#upSSH)
+* [៧. Synced folder](#sync)
+* [៨. Provisioning](#provisioning)
+* [៩. Netwroking](#networking)
+* [១០. Recap](#recap)
+* [១០. References](#ref)
+
+
+## <a name="intro">១. Vagrantជាអ្វី?</a>
 
 * Vagrant ជាឧបករណ៍ដំឡើង និងគ្រប់គ្រងម៉ាស៊ីននិមិត្ត
 អាចប្រើបាននៅលើប្រព័ន្ធប្រតិបត្តិការ Ubunu, MacOS
@@ -14,9 +33,9 @@ Chef, Puppet)។
 ហើយដំឡើងsoftwareអោយកុំព្យូទ័រដោយស្វ័យប្រវត្តិ ដោយមិន
 គិតថាកំពុងប្រើប្រព័ន្ធប្រតិបត្តិការ(OS)ឫក៏distributionណា។
 
-## . ផលប្រយោជន៍របស់Vagrant
+## <a name="pros">២. ផលប្រយោជន៍របស់Vagrant</a>
 
-### . ចំពោះdeveloper
+### <a name="dev">២.១. ចំពោះdeveloper</a>
 
 Softwareទាំងអស់ ក៏ដូចជាការconfigផ្សេងទៀត ត្រូវបាន
 អនុវត្តន៍ដោយអ្នកបង្កើត `vagrant` ចំណែកសមាជិកផ្សេងៗ នឹងនៅក្នុង
@@ -25,7 +44,7 @@ Softwareទាំងអស់ ក៏ដូចជាការconfigផ្សេ�
 ទាំងនេះបានកាត់បន្ថយបាននូវពេលវេលាដំឡើង កាត់បន្ថយbugនឹងកើត
 ឡើងតែមជ្ឈដ្ឋានមួយជាក់លាក់តែប៉ុណ្ណោះ។ 
 
-### . ចំពោះoperations engineer
+### <a name="operation">២.២. ចំពោះoperations engineer</a>
 
 - អ្នកអាចsetupនៅពេលជាមួយគ្នា បានVM networkជាច្រើន យ៉ាងសាមញ្ញ៖
 ប្រសិនគ្រាន់តែប្រើVirtualBoxម្យ៉ាង អ្នកត្រូវតែsetupជាបន្តបន្ទាប់
@@ -42,7 +61,7 @@ Softwareទាំងអស់ ក៏ដូចជាការconfigផ្សេ�
 ក្រៅពីនេះ ជាមួយនឹងការប្រើប្រាស់បណ្ដារ `provision tool` អ្នកងាយស្រួលក្នងការ
 ដំឡើងsoftwareនៅលើអំបូរOSខុសៗគ្នា។
 
-## . ចំពោះDesigner
+## <a name="design">២.៣. ចំពោះDesigner</a>
 
 អ្នកមិនបន្តការលំបាកជាមួយនឹងការដំឡើងwebsitដំណើរការនៅលើ
 ម៉ាស៊ីនរបស់អ្នក ជាមួយintructionរាប់សិបទៀតនោះទេ។ ហើយក៏មិនត្រូវាការ
@@ -51,13 +70,13 @@ Softwareទាំងអស់ ក៏ដូចជាការconfigផ្សេ�
 នឹងជួយបង្ហើយកិច្ចការរបស់អ្នក។ ក្រោយមកអ្នកអាចត្រឡប់មកធ្វើកិច្ចការ
 របស់អ្នក Desig!
 
-## . ការដំឡើង
+## <a name="install">៣. ការដំឡើង</a>
 
 Vagrant ត្រូវបានសរសេរដោយRuby ដែលជា១ repository ឋិតនៅលំដាប់top trending រសប់RubyនៅលើGithub។ អ្នកអាចមើលទៅលើប្រភព(source code)
 លើទំព័រ  https://github.com/mitchellh/vagrant។ អ្នកមិនចាំបាច់ដំឡើងRubyនៅលើកុំព្យូទ័ររបស់អ្នកទេ ដោយគ្រាន់តែdownloadដោយផ្ទាល់នៅលើគេហទំពរ័ផ្លូវការ
 http://www.vagrantup.com/downloads ។ ចំពោះការដំឡើងវិញរិតតែងាយស្រួលទៅទៀត តែដើម្បីប្រើប្រាស់វា ជាពិសេសmasterទៅលើវានោះ អ្នកត្រូវមានចំនេះដឹងអំពីRuby។
 
-## . Project Setup
+## <a name="setup">៤. Project Setup</a>
 
 បន្ទាប់ពីរដំឡើងVagrant រួចរាល់អ្នកអាចដំណើរការ(run)ពីterminal ដោយវាយ `vagrant` ។ ដើម្បីបង្កើតproject ១ អ្នកអាចធ្វើដូចខាងក្រោម៖
 ```
@@ -72,7 +91,7 @@ vagrant init
 
 នេះជា 1 file ដែលបានសរសេរដោយRuby (ទោះបីជាកន្តុយរបស់វាមិនមែន .rb)។
 
-## . Boxes
+## <a name="boxes">៥. Boxes</a>
 
 ប្រសិនបើបានដំឡើង 1 OS ដូចរបៀបធម្មតា អ្នកនឹងត្រូវចំនាយពេលកន្លះម៉ោង ដោយគ្រាន់តែចុច (click) mouse និងចុច enter។ ជាមួយVagrant boxes អ្នកសន្សំសន្ចៃពេលវេលា
 បានច្រើន។ Vagrant box ជាbase image ជួយអ្នកអោយងាយស្រួលក្នុងការបង្កើត 1 VM (virtual machine)។ ខាងក្រោមនេះជា commandដើម្បីclone box ពីhost machine។
@@ -93,7 +112,7 @@ Box ត្រូវបានបង្កើតដោយ `user hashicorp` និ�
 មានvmមួយក្នងម៉ាស៊ីនរបស់អ្នក គឺជា ubunu 14.04 LTS 32 bit។ អ្នកក៏អាចចុះឈ្មោះaccount និង បង្កើត+share​ box របស់អ្នកអោយអ្នកដទៃប្រើប្រាស់ផងដែរនៅលើ 
 https://atlas.hashicorp.com ។ 
 
-## . Up & SSH
+## <a name="upSSH">៦. Up & SSH</a>
 
 បន្ទាប់ពីដំឡើងរួចរាល់អ្នកអាច seupជាលើកដំបូង ដោយអ្នកបើក ហើយloginដូចខាងក្រោម៖
 ```
@@ -104,10 +123,10 @@ vagrant ssh
 ជាមួយលើកដំបូងបើកកុំព្យូទ៏រ អ្នកត្រូវរងចាំដើម្បីvagrant clone ពី​ base box ចំនែកពេលលើកក្រោយ គឺវានឹងដំណើរកាលឿន ពេលបើកកុំព្យូទ័រ។ ក្រោយពេល login អ្នកមានសិទ្ធគ្រប់គ្រាន់ដើម្បី
 ប្រើប្រាស់កុំព្យូទ័ររបស់អ្នក លើកលែងតែការលុបfile* ពិសេសៗ។
 
-## . Synced folder
+## <a name="sync">៧. Synced folder</a>
 
 ទោះបីជាក្នុងដៃរបស់អ្នកមានម៉ាស៊ីននិមិត្តមួយបានបង្កើតឡើងយ៉ាងងាយស្រួលក៏ដោយ​ ប៉ុន្តែមិនមែននណាក៏ចង់សរសេរcodeផ្ទាល់នោះដែរ។ ជាdefaultគឺថាvagrantគាត់supportល្អក្នុងការ
-sysnce​ file រវាងserver និងVM។ ហើយជាធម្មតា directory root របស់server (ដែលផ្ទុក Vagrantfile)នឹងត្រូវបានsysnceនៅ `vagrant/Vagrantfile	` ក្នុងម៉ាស៊ីននិមិត្ត។
+synce​ file រវាងserver និងVM។ ហើយជាធម្មតា directory root របស់server (ដែលផ្ទុក Vagrantfile)នឹងត្រូវបានsysnceនៅ `vagrant/Vagrantfile` ក្នុងម៉ាស៊ីននិមិត្ត។
 ចំពោះfile*ពិសេស ដែលខ្ញុំចង់និយាយ គឺជាfileនេះឯង។ ទោះបីជាអ្នកមានសិទ្ធគ្រប់គ្រាន់ធ្វើការជាមួយម៉ាស៊ីននិមិត្តក៏ដោយ តែដាច់ខាត់កុំលុបfile config របស់system។
 
 ដើម្បីធ្វើតេស្តមុងារsynce អ្នកធ្វើដូចខាងក្រោម
@@ -137,7 +156,7 @@ EnableSendfile off
 
 ពត័មានលំអិត អ្នកអាចមើលនៅទីនេះ https://docs.vagrantup.com/v2/synced-folders/virtualbox.html
 
-## . Provisioning
+## <a name="provisioning">៨. Provisioning</a>
 
 មកដល់នេះ អ្នកបានដំឡើងរួចរាល់VMមួយក្នុងដៃ និងប្រើប្រាស់យ៉ាងងាយស្រួល។ ដោយពឹងទៅលើ sync foler អ្នកdevតាមចិត្តនៅលើhost computer និងស្ងប់ចិត្តជាមួយVMដែលនឹង
 ធ្វើបច្ចប្បន្នភាពcodeថ្មីrealtime។ ក៏ប៉ុន្តែVagrantមិនមែនមានតែត្រឹមនេះនោះទេ មួយក្នុងចំនោមចំនុចវិជ្ជមានរបស់vagrantនោះគឺ `provisioning` ។ និយាយបែបងាយយល់គឺ
@@ -155,7 +174,7 @@ SHELL
 ស្រដៀងគ្នាដែរ ជាមួយនឹងការដំឡើងពី inline shell គឺអ្នកអាចបង្កើត 1 file scriptដាច់ដោយឡែក ដើម្បីvagrantdដំណើរការពេលrestart។ តែរបៀបប្រើប្រាស់shellជា 
 1​របៀបមួយដែលចំនាស់ទៅហើយ ព្រោះសព្វថ្ងៃនេះមានtoolជាច្រើនជួយក្នុងការsetupនៅលើsystemធំៗ។ ២ជំរើសដ៏ពេញនិយមបំផុត ចំពោះvagrantគឺ Chef & Puppet។ 
 
-## . Netwroking
+## <a name="networking">៩. Netwroking</a>
 
 នៅពេលដែលអ្នកបានដំឡើងពេញលេញនូវមជ្ឈដ្ឋាន(environment)អភិវឌ្ឍន៍ web កិច្ចការចុងក្រោយដែលអ្នកត្រូវធ្វើនោះគឺ config network ដើម្បីអាចaccessចូលទៅក្នុងVM
 និងដំណើរការ(run)websiteរបស់អ្នក។ របៀបធ្វើងាយស្រួទេ ជាមួយVagrant ដោយអ្នកconfig Vagrantfileដូចខាងក្រោម៖
@@ -166,25 +185,13 @@ config.vm.network :forwarded_port, host: 4567, guest: 80
 ចាប់ពីពេលនេះតទៅ accessដល់port 4567របស់server នឹងforwardដល់port 80នៃVM។ ក្រៅពីនេះ​config basic ជាមួយport​​ forward អ្នកអាចconfig លំបាកបន្តិច
 តាមឯកសារconfig (Nework)[https://www.vagrantup.com/docs/networking/index.html] របស់Vagrant។
  
-## . Recap
+## <a name="recap">១០. Recap</a>
 
 អត្ថបទនេះបានផ្ដល់អោយមិត្តអ្នកអាន ពីVagrantកំរិតមូលដ្ឋាននៅឡើយ។ ហើយអ្នកក៏អាច ដឹងថាវាជាអ្វី? ដំឡើងម៉ាស៊ីននិមិត្ត១ដូចម្ដេច? ក្នុងអត្ថបន្ត យើងនឹងបន្តស្វែងយល់បណ្ដាfeature
 ជ្រាលជ្រៅថែមទៀតអំពិរVagrant​(Provisioning, Multi-Machine, & Boxes)។
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-## . References
+## <a name="ref">១០. References</a>
 
 [1] https://viblo.asia/p/tim-hieu-vagrant-phan-1-1l0rvmDQGyqA
 [2] https://viblo.asia/p/tim-hieu-vagrant-phan-2-vagrant-chef-wznVGLqQvZOe
