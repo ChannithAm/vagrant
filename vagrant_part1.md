@@ -183,7 +183,7 @@ config.vm.network :forwarded_port, host: 4567, guest: 80
 ```
 
 ចាប់ពីពេលនេះតទៅ accessដល់port 4567របស់server នឹងforwardដល់port 80នៃVM។ ក្រៅពីនេះ​config basic ជាមួយport​​ forward អ្នកអាចconfig លំបាកបន្តិច
-តាមឯកសារconfig (Nework)[https://www.vagrantup.com/docs/networking/index.html] របស់Vagrant។
+តាមឯកសារconfig [Nework](https://www.vagrantup.com/docs/networking/index.html) របស់Vagrant។
  
 ## <a name="recap">១០. Recap</a>
 
