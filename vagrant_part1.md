@@ -194,5 +194,7 @@ config.vm.network :forwarded_port, host: 4567, guest: 80
 ## <a name="ref">១០. References</a>
 
 [1] https://viblo.asia/p/tim-hieu-vagrant-phan-1-1l0rvmDQGyqA
+
 [2] https://viblo.asia/p/tim-hieu-vagrant-phan-2-vagrant-chef-wznVGLqQvZOe
+
 [3] https://thachpham.com/tools/tao-may-ao-tren-may-tinh-voi-vagrant-va-virtualbox.html
