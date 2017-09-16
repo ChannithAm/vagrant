@@ -1,4 +1,6 @@
 # vagrant
+![vagrant](./img/vagrant.jpg)
+
 Vagrant ជាឧបករណ៍ដំឡើង និងគ្រប់គ្រងម៉ាស៊ីននិមិត្ត អាចប្រើបាននៅលើប្រព័ន្ធប្រតិបត្តិការ Ubunu, MacOS និងWindows
 
 បញ្ជីអត្ថបទ
