@@ -17,7 +17,7 @@
 * [៨. Provisioning](#provisioning)
 * [៩. Netwroking](#networking)
 * [១០. Recap](#recap)
-* [១០. References](#ref)
+* [១១. References](#ref)
 
 
 ## <a name="intro">១. Vagrantជាអ្វី?</a>
@@ -191,7 +191,7 @@ config.vm.network :forwarded_port, host: 4567, guest: 80
 ជ្រាលជ្រៅថែមទៀតអំពិរVagrant​(Provisioning, Multi-Machine, & Boxes)។
 
 
-## <a name="ref">១០. References</a>
+## <a name="ref">១១. References</a>
 
 [1] https://viblo.asia/p/tim-hieu-vagrant-phan-1-1l0rvmDQGyqA
 
